@@ -1,0 +1,7 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<Umbraco_Application.ContentModels.QueryPage>
+@{
+	Layout = "_Layout.cshtml";
+}
+<h1>@Model.Name</h1>
+
+@Html.Action("RenderQuery","QuerySurface")

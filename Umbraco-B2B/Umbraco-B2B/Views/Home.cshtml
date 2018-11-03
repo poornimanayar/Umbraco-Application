@@ -1,0 +1,14 @@
+﻿@using System.Web.Optimization
+@inherits Umbraco.Web.Mvc.UmbracoViewPage<Umbraco_Application.ContentModels.HomePage>
+@{
+    Layout = "_Layout.cshtml";
+}
+<h1>@Model.Name</h1>
+
+
+@Html.Action("RenderLogin","ProfileSurface")
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

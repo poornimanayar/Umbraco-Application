@@ -1,0 +1,69 @@
+﻿@using Umbraco_Application.Controllers
+@inherits UmbracoViewPage<Umbraco_Application.Models.ViewModels.QueryViewModel>
+<div class="row">
+    <div class="col-md-8 col-sm-12">
+        <section id="loginForm">
+            @using (Html.BeginUmbracoForm<QuerySurfaceController>("SubmitQuery", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.Label("Name", new { @class = "col-md-2 control-label", @for = "MemberName" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.MemberName, new { @class = "form-control", @readonly = "true" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("Email", new { @class = "col-md-2 control-label", @for = "MemberEmail" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.MemberEmail, new { @class = "form-control" , @readonly = "true" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Category, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(m => m.Category, Model.Categories,"Please select", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Category, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Product, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(m => m.Product,Model.Products,"Please select", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Product, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                if (Model.IsReseller)
+                {
+                    <div class="form-group">
+                        @Html.Label("Raised on behalf of", new { @class = "col-md-2 control-label", @for = "RaisedOnBehalfOf" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.RaisedOnBehalfOf, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.RaisedOnBehalfOf, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    @Html.Hidden("RaisedOnBehalfOf", "N/A")
+                }
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Message, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextAreaFor(m => m.Message, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Message, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Submit query" class="btn btn-default" />
+                    </div>
+                </div>
+            }
+        </section>
+    </div>
+</div>
+@if (ViewData.ContainsKey("Message"))
+{
+    <p>@ViewData["Message"]</p>
+}

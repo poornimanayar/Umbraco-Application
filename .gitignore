@@ -13,3 +13,16 @@ Media
 *.media.zip
 *.user
 *.suo
+Umbraco-B2B/\.vs/Umbraco-B2B/v15/Server/sqlite3/
+
+Umbraco-B2B/\.vs/
+
+Umbraco-B2B/packages/
+
+Umbraco-B2B/Umbraco-B2B/App_Browsers/
+
+Umbraco-B2B/Umbraco-B2B/bin/
+
+Umbraco-B2B/Umbraco-B2B/obj/
+
+Umbraco-B2B/Umbraco-B2B/Properties/
